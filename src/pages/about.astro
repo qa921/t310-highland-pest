@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+import { supportingAreas } from "../data/areas";
+---
+<BaseLayout title="About" description={`About ${site.brand}.`}>
+  <h1>About {site.brand}</h1>
+  <p>
+    {site.brand} is an enquiry-led service site focused on pest and wildlife exclusion
+    information for {site.primaryMarket}, our primary market, with confirmed supporting coverage
+    in {supportingAreas.map((a) => a.name).join(", ")}.
+  </p>
+  <p>
+    Our service pages describe the types of work we accept enquiries about, and our articles are
+    practical education for homeowners. Everything starts with a general enquiry so scope can be
+    discussed before anything is agreed.
+  </p>
+  <p>
+    This site deliberately does not publish prices, licensing claims, response-time commitments,
+    testimonials, or guarantees. Where any of those apply, they are discussed directly during
+    enquiry.
+  </p>
+  <p>
+    <a href={site.enquiryPath}>Start a general enquiry</a> · <a href="/services">Browse services</a>
+  </p>
+</BaseLayout>

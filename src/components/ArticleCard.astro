@@ -1,0 +1,9 @@
+---
+import type { Article } from "../data/articles";
+
+const { article } = Astro.props as { article: Article };
+---
+<article class="card">
+  <h3><a href={`/articles/${article.slug}`}>{article.title}</a></h3>
+  <p>{article.summary}</p>
+</article>

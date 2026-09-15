@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import { services } from "../../data/services";
+import { articles } from "../../data/articles";
+import { site } from "../../data/site";
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const related = articles.filter((a) => service.relatedArticleSlugs.includes(a.slug));
+---
+<BaseLayout title={service.name} description={service.summary}>
+  <h1>{service.name}</h1>
+  <p class="badge">{service.priority} priority service</p>
+  <p>{service.summary}</p>
+  <p>{service.marketNote}</p>
+  <p>
+    Enquiries from {site.primaryMarket} and confirmed supporting areas all use the same{" "}
+    <a href={site.enquiryPath}>general enquiry path</a>.
+  </p>
+  {related.length > 0 && (
+    <section>
+      <h2>Related reading</h2>
+      <div class="grid">
+        {related.map((a) => <ArticleCard article={a} />)}
+      </div>
+    </section>
+  )}
+  <p>
+    <a href="/services">All services</a> ·{" "}
+    <a href="/areas/denver">{site.primaryMarket} (primary market)</a>
+  </p>
+</BaseLayout>

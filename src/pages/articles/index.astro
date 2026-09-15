@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import { articles } from "../../data/articles";
+
+const ordered = [...articles].sort((a, b) => b.evidenceDate.localeCompare(a.evidenceDate));
+---
+<BaseLayout title="Articles" description="Practical pest and wildlife education for homeowners.">
+  <h1>Articles</h1>
+  <p>
+    Practical education for homeowners. Articles are general information — not diagnostic, legal,
+    health, or guarantee content.
+  </p>
+  <div class="grid">
+    {ordered.map((a) => <ArticleCard article={a} />)}
+  </div>
+</BaseLayout>

@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ServiceCard from "../../components/ServiceCard.astro";
+import { services } from "../../data/services";
+import { site } from "../../data/site";
+
+const ordered = [...services].sort((a, b) =>
+  a.priority === b.priority ? a.name.localeCompare(b.name) : a.priority === "High" ? -1 : 1
+);
+---
+<BaseLayout title="Services" description={`Services open to enquiry in ${site.primaryMarket} and confirmed supporting areas.`}>
+  <h1>Services</h1>
+  <p>
+    Every service below starts with a general enquiry so scope can be discussed first. This site
+    publishes no prices, availability windows, or guarantees.
+  </p>
+  <div class="grid">
+    {ordered.map((s) => <ServiceCard service={s} />)}
+  </div>
+  <p><a href={site.enquiryPath}>Start a general enquiry</a></p>
+</BaseLayout>

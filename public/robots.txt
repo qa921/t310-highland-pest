@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://highland-pest-response.example.com/sitemap.xml

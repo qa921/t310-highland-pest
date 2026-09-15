@@ -1,0 +1,50 @@
+---
+import "../styles/global.css";
+import { site } from "../data/site";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = site.description } = Astro.props;
+
+const nav = [
+  { href: "/services", label: "Services" },
+  { href: "/areas", label: "Service areas" },
+  { href: "/articles", label: "Articles" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title} | {site.brand}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">{site.brand}</a>
+      <p class="market-tag">{site.primaryMarket} (primary market) &amp; confirmed supporting areas</p>
+      <nav aria-label="Primary">
+        <ul>
+          {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>{site.brand} — enquiry-led pest and wildlife exclusion information for {site.primaryMarket} and confirmed supporting areas. No prices, availability, or guarantee claims are published on this site.</p>
+      <ul class="footer-links">
+        <li><a href="/contact">General enquiry</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/sitemap.xml">Sitemap</a></li>
+      </ul>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+---
+import type { Service } from "../data/services";
+
+const { service } = Astro.props as { service: Service };
+---
+<article class="card">
+  <h3><a href={`/services/${service.slug}`}>{service.name}</a></h3>
+  <p class="badge">{service.priority} priority</p>
+  <p>{service.summary}</p>
+</article>

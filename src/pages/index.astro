@@ -1,5 +1,56 @@
 ---
-import { site } from '../data/site';
-import '../styles/global.css';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import AreaCard from "../components/AreaCard.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import { site } from "../data/site";
+import { services } from "../data/services";
+import { primaryArea, supportingAreas } from "../data/areas";
+import { articles } from "../data/articles";
+
+const orderedServices = [...services].sort((a, b) =>
+  a.priority === b.priority ? a.name.localeCompare(b.name) : a.priority === "High" ? -1 : 1
+);
+const latestArticles = [...articles]
+  .sort((a, b) => b.evidenceDate.localeCompare(a.evidenceDate))
+  .slice(0, 3);
 ---
-<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><title>{site.brand}</title></head><body><main><h1>{site.brand}</h1><p>Baseline Astro site for {site.primaryMarket}. Complete the service, area, article, and support routes described in the specs.</p></main></body></html>
+<BaseLayout title={`Pest and wildlife exclusion enquiries in ${site.primaryMarket}`}>
+  <section class="hero">
+    <h1>Pest and wildlife exclusion enquiries in {site.primaryMarket}</h1>
+    <p>
+      {site.brand} is an assessment- and enquiry-led service site centred on {primaryArea.name},
+      our primary market. Every service starts with a general enquiry so scope can be discussed
+      before anything is agreed.
+    </p>
+    <p><a class="cta" href={site.enquiryPath}>Start a general enquiry</a></p>
+  </section>
+
+  <section>
+    <h2>Services</h2>
+    <div class="grid">
+      {orderedServices.map((s) => <ServiceCard service={s} />)}
+    </div>
+    <p><a href="/services">All services</a></p>
+  </section>
+
+  <section>
+    <h2>Supporting areas</h2>
+    <p>
+      {primaryArea.name} is our primary market. We also accept enquiries from these confirmed
+      supporting areas through the same general enquiry path:
+    </p>
+    <div class="grid">
+      {supportingAreas.map((a) => <AreaCard area={a} />)}
+    </div>
+    <p><a href="/areas">All service areas</a></p>
+  </section>
+
+  <section>
+    <h2>Latest articles</h2>
+    <div class="grid">
+      {latestArticles.map((a) => <ArticleCard article={a} />)}
+    </div>
+    <p><a href="/articles">All articles</a></p>
+  </section>
+</BaseLayout>

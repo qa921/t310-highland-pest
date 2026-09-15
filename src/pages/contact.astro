@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+import { areas } from "../data/areas";
+import { services } from "../data/services";
+---
+<BaseLayout title="Contact" description={`Start a general enquiry with ${site.brand}.`}>
+  <h1>Contact — general enquiry</h1>
+  <p>
+    All enquiries — from {site.primaryMarket} and every confirmed supporting area — start here.
+    Tell us what you have noticed and we will respond through the contact details you provide.
+    This site does not publish a phone number or street address.
+  </p>
+  <form class="enquiry" method="post" action="#">
+    <label>
+      Name
+      <input type="text" name="name" required />
+    </label>
+    <label>
+      Email
+      <input type="email" name="email" required />
+    </label>
+    <label>
+      Area
+      <select name="area">
+        {areas.map((a) => (
+          <option value={a.slug}>
+            {a.name}{a.role === "primary" ? " (primary market)" : ""}
+          </option>
+        ))}
+      </select>
+    </label>
+    <label>
+      Service of interest
+      <select name="service">
+        <option value="not-sure">Not sure yet</option>
+        {services.map((s) => <option value={s.slug}>{s.name}</option>)}
+      </select>
+    </label>
+    <label>
+      What have you noticed?
+      <textarea name="message" rows="5" required></textarea>
+    </label>
+    <button class="cta" type="submit">Send enquiry</button>
+  </form>
+  <p class="note">
+    Form submission handling is configured at deployment time. No prices, availability windows,
+    or response-time commitments are published on this site.
+  </p>
+</BaseLayout>

@@ -1,0 +1,10 @@
+---
+import type { Area } from "../data/areas";
+
+const { area } = Astro.props as { area: Area };
+---
+<article class="card">
+  <h3><a href={`/areas/${area.slug}`}>{area.name}</a></h3>
+  <p class="badge">{area.role === "primary" ? "Primary market" : "Supporting area"}</p>
+  <p>{area.angle}.</p>
+</article>

@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AreaCard from "../../components/AreaCard.astro";
+import { primaryArea, supportingAreas } from "../../data/areas";
+import { site } from "../../data/site";
+---
+<BaseLayout title="Service areas" description={`${site.primaryMarket} primary market and confirmed supporting areas.`}>
+  <h1>Service areas</h1>
+  <p>
+    {site.primaryMarket} is our primary market — the centre of this site's service information.
+    The areas below are confirmed supporting areas whose enquiries run through the same general
+    enquiry path. Coverage does not extend beyond the areas listed here.
+  </p>
+  <h2>Primary market</h2>
+  <div class="grid">
+    <AreaCard area={primaryArea} />
+  </div>
+  <h2>Confirmed supporting areas</h2>
+  <div class="grid">
+    {supportingAreas.map((a) => <AreaCard area={a} />)}
+  </div>
+</BaseLayout>

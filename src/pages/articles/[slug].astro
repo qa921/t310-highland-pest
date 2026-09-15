@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { articles } from "../../data/articles";
+import { services } from "../../data/services";
+import { areas } from "../../data/areas";
+import { site } from "../../data/site";
+
+export function getStaticPaths() {
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const primaryService = services.find((s) => s.slug === article.primaryServiceSlug);
+const secondary =
+  article.secondaryLink.type === "service"
+    ? {
+        href: `/services/${article.secondaryLink.slug}`,
+        label:
+          services.find((s) => s.slug === article.secondaryLink.slug)?.name ?? "Related service",
+      }
+    : {
+        href: `/areas/${article.secondaryLink.slug}`,
+        label: areas.find((a) => a.slug === article.secondaryLink.slug)?.name ?? "Related area",
+      };
+---
+<BaseLayout title={article.title} description={article.summary}>
+  <article>
+    <h1>{article.title}</h1>
+    <p class="meta">Practical guidance · reviewed {article.evidenceDate}</p>
+    {article.body.map((paragraph) => <p>{paragraph}</p>)}
+    <p class="note">
+      Articles are general education — not diagnostic, legal, health, or guarantee content.
+    </p>
+    <h2>Related pages</h2>
+    <ul>
+      {primaryService && (
+        <li><a href={`/services/${primaryService.slug}`}>{primaryService.name}</a></li>
+      )}
+      <li><a href={secondary.href}>{secondary.label}</a></li>
+      <li><a href={site.enquiryPath}>Start a general enquiry</a></li>
+    </ul>
+    <p><a href="/articles">All articles</a></p>
+  </article>
+</BaseLayout>
