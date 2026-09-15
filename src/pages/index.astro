@@ -19,15 +19,26 @@ const latestArticles = [...articles]
   <section class="hero">
     <h1>Pest and wildlife exclusion enquiries in {site.primaryMarket}</h1>
     <p>
-      {site.brand} is an assessment- and enquiry-led service site centred on {primaryArea.name},
-      our primary market. Every service starts with a general enquiry so scope can be discussed
-      before anything is agreed.
+      {site.brand} is an assessment- and enquiry-led service site centred on {primaryArea.name}.
+      Every service starts with a general enquiry so scope can be discussed before anything is
+      agreed.
     </p>
     <p><a class="cta" href={site.enquiryPath}>Start a general enquiry</a></p>
   </section>
 
   <section>
-    <h2>Services</h2>
+    <h2>Our primary market: {primaryArea.name}</h2>
+    <p>
+      {primaryArea.name} is the centre of everything on this site — our services, articles, and
+      enquiry path are built around it.
+    </p>
+    <div class="grid">
+      <AreaCard area={primaryArea} />
+    </div>
+  </section>
+
+  <section>
+    <h2>Services in {site.primaryMarket}</h2>
     <div class="grid">
       {orderedServices.map((s) => <ServiceCard service={s} />)}
     </div>
@@ -35,10 +46,11 @@ const latestArticles = [...articles]
   </section>
 
   <section>
-    <h2>Supporting areas</h2>
+    <h2>Confirmed supporting areas</h2>
     <p>
-      {primaryArea.name} is our primary market. We also accept enquiries from these confirmed
-      supporting areas through the same general enquiry path:
+      Beyond {primaryArea.name}, we accept enquiries from the confirmed supporting areas below.
+      They are secondary to our {primaryArea.name} focus: enquiries from these areas use the same
+      general enquiry path, and no local offices, availability, or travel commitments are implied.
     </p>
     <div class="grid">
       {supportingAreas.map((a) => <AreaCard area={a} />)}

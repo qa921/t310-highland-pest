@@ -5,9 +5,10 @@ a{color:#1d4ed8}
 .site-header{background:#0f172a;color:#f8fafc;padding:1.25rem 1.5rem}
 .site-header .brand{color:#fff;font-size:1.25rem;font-weight:700;text-decoration:none}
 .site-header .market-tag{margin:.25rem 0 .75rem;color:#cbd5e1;font-size:.9rem}
-.site-header nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:1rem;margin:0;padding:0}
+.site-header nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:1rem;margin:0;padding:0;align-items:center}
 .site-header nav a{color:#e2e8f0;text-decoration:none}
 .site-header nav a:hover{text-decoration:underline}
+.site-header nav .nav-primary a{background:#1d4ed8;color:#fff;padding:.3rem .7rem;border-radius:.5rem;font-weight:700}
 .hero{background:#fff;border:1px solid #e2e8f0;border-radius:.75rem;padding:1.5rem;margin-bottom:2rem}
 .cta{display:inline-block;background:#1d4ed8;color:#fff;padding:.6rem 1.1rem;border-radius:.5rem;text-decoration:none;font-weight:600;border:0;cursor:pointer;font:inherit}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:1rem;margin:1rem 0}

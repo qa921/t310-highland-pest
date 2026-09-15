@@ -5,13 +5,15 @@ Astro lead-generation site for the fictional Highland Pest Response brand (M-T31
 ## Structure
 
 - `src/data/` — single source of truth, built from the approved registers in `fixtures/approved/`:
-  - `site.ts` — brand, primary market, enquiry path, production origin placeholder
+  - `site.ts` — brand, primary market, enquiry path, production origin
   - `services.ts` — approved service catalog (bat exclusion remains reserved and unpublished)
   - `areas.ts` — Denver (primary market) plus 12 confirmed supporting areas; supersedes the older three-area list in `specs/content.md`
   - `articles.ts` — the nine approved article topics with conservative bodies
 - `src/layouts/BaseLayout.astro` + `src/components/` — shared layout and reusable card components
 - `src/pages/` — home plus dynamic, data-driven routes: `/services/[slug]`, `/areas/[slug]`, `/articles/[slug]`; support pages: About, Contact (general enquiry), Privacy, 404; generated `/sitemap.xml`
 - `public/robots.txt`, `public/favicon.svg`
+
+Denver is the primary market and is centred in the navigation and homepage hierarchy; supporting areas are framed as clearly secondary with no office, availability, coverage, or travel claims.
 
 ## Content policy
 
@@ -25,4 +27,4 @@ npm run dev
 npm run build
 ```
 
-Set the production origin in `src/data/site.ts` (`siteUrl`) before deploying and mirror it in `public/robots.txt`; it feeds `sitemap.xml`. Deploy only after the build passes (see `fixtures/approved/M-T310-V3-prior-state-audit.md`).
+Production deploys to Vercel project `t310-highland-pest` at `https://t310-highland-pest.vercel.app` (kept in sync with `src/data/site.ts` and `public/robots.txt`). Deploy only after the build passes (see `fixtures/approved/M-T310-V3-prior-state-audit.md`).

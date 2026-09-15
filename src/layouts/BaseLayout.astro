@@ -10,6 +10,7 @@ interface Props {
 const { title, description = site.description } = Astro.props;
 
 const nav = [
+  { href: "/areas/denver", label: "Denver", primary: true },
   { href: "/services", label: "Services" },
   { href: "/areas", label: "Service areas" },
   { href: "/articles", label: "Articles" },
@@ -28,10 +29,14 @@ const nav = [
   <body>
     <header class="site-header">
       <a class="brand" href="/">{site.brand}</a>
-      <p class="market-tag">{site.primaryMarket} (primary market) &amp; confirmed supporting areas</p>
+      <p class="market-tag">Centred on {site.primaryMarket}, our primary market — plus confirmed supporting areas</p>
       <nav aria-label="Primary">
         <ul>
-          {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+          {nav.map((item) => (
+            <li class={item.primary ? "nav-primary" : undefined}>
+              <a href={item.href}>{item.label}{item.primary ? " (primary market)" : ""}</a>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
@@ -39,7 +44,7 @@ const nav = [
       <slot />
     </main>
     <footer class="site-footer">
-      <p>{site.brand} — enquiry-led pest and wildlife exclusion information for {site.primaryMarket} and confirmed supporting areas. No prices, availability, or guarantee claims are published on this site.</p>
+      <p>{site.brand} — enquiry-led pest and wildlife exclusion information centred on {site.primaryMarket}, with confirmed supporting areas listed on our <a href="/areas">service areas</a> page. No prices, availability, or guarantee claims are published on this site.</p>
       <ul class="footer-links">
         <li><a href="/contact">General enquiry</a></li>
         <li><a href="/privacy">Privacy</a></li>

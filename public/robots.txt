@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://highland-pest-response.example.com/sitemap.xml
+Sitemap: https://t310-highland-pest.vercel.app/sitemap.xml
